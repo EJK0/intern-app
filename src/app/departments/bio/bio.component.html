@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <app-spinner-overlay *ngIf="instructionsLoading">
 </app-spinner-overlay>
 <div class="instructions-title">
@@ -15,6 +17,7 @@
       class="mat-elevation-z1"
       (onInit)="handleEditorInit($event)"
       [init]="{
+          selector: 'textarea',
           icons: 'material',
           skin: 'borderless',
           plugins: 'wordcount, link',
