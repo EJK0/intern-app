@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ReplaySubject, Subject} from "rxjs";
+import {ReplaySubject} from "rxjs";
 import {ProfileService} from "../profile.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {ProfileService} from "../profile.service";
 export class ProfileIconComponent implements OnInit, OnChanges {
   initials = new ReplaySubject<string>();
   @Input() iconInitials!: string;
-  @Input() iconClass!: string;
+  @Input() iconClass: string = '';
   @Input() containerClass!: string;
 
   constructor(private profileService: ProfileService) { }

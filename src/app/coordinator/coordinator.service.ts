@@ -8,7 +8,6 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class CoordinatorService {
-  private appId!: string;
 
   constructor(private httpClient: HttpClient,
               private router: Router) { }

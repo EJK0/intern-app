@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private loginListener!: Subscription;
 
 
-  constructor(private authService: AuthService,
-              private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginListener = this.authService.loggedIn.subscribe((isLogged) => {

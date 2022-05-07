@@ -7,7 +7,7 @@ import decode from "jwt-decode";
   providedIn: 'root'
 })
 export class StudentGuard implements CanActivate {
-  constructor(private router: Router) {
+  constructor() {
   }
 
   canActivate(

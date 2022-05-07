@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 import {StudentService} from "../student.service";
 import {BioService} from "../../departments/bio/bio.service";
 import {AppProgressType} from "../../shared/models/AppProgressType";
-import {AppDeptTypes} from "../../shared/models/AppDeptTypes";
 
 @Component({
   selector: 'app-student-apply',
@@ -12,7 +11,6 @@ import {AppDeptTypes} from "../../shared/models/AppDeptTypes";
   styleUrls: ['./student-apply.component.css']
 })
 export class StudentApplyComponent {
-  appDeptType = AppDeptTypes;
   progressType = AppProgressType;
   disableSelect = new FormControl(false);
   program: string = '';

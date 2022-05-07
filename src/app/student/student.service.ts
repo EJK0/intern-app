@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, ReplaySubject} from "rxjs";
+import {ReplaySubject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {BioApplication} from "../departments/bio/bio.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,6 @@ export class StudentService {
   private appType$ = new ReplaySubject<string>();
   private appStatus$ = new ReplaySubject<string>();
   private appProgress$ = new ReplaySubject<string>();
-  announcements$ = new BehaviorSubject('');
 
   constructor(private httpClient: HttpClient) {
     this.appType$.subscribe(val => this.appType = val);

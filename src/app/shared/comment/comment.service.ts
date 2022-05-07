@@ -1,15 +1,12 @@
 import {Injectable, InjectionToken, Injector} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {
-  Overlay,
-  OverlayRef,
-} from "@angular/cdk/overlay";
+import {Overlay, OverlayRef,} from "@angular/cdk/overlay";
 import {ComponentPortal} from "@angular/cdk/portal";
 import {CommentComponent} from "./comment.component";
-import {Subject} from "rxjs";
+import {ReplaySubject} from "rxjs";
 import {CommentThread} from "./comment-thread.model";
-import {map, switchMap} from "rxjs/operators";
+import {map, switchMap, take} from "rxjs/operators";
 import {ProfileService} from "../../user/profile/profile.service";
 import {Profile} from "../../user/profile/profile-model";
 

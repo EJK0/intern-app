@@ -715,7 +715,7 @@
             </mat-card>
             <mat-action-row>
               <button mat-icon-button matTooltip="Reply to comment thread" matTooltipShowDelay="750" class="btn" color="primary" (click)="addComment(commentThread._id)"><mat-icon>reply</mat-icon></button>
-              <button *ngIf="this.isStudent()" mat-icon-button matTooltip="Delete comment thread" matTooltipShowDelay="750" class="btn" color="warn" (click)="openDialog(commentThread._id)"><mat-icon>delete</mat-icon></button>
+              <button *ngIf="this.isCoordinator()" mat-icon-button matTooltip="Delete comment thread" matTooltipShowDelay="750" class="btn" color="warn" (click)="openDialog(commentThread._id)"><mat-icon>delete</mat-icon></button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>

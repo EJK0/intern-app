@@ -7,7 +7,7 @@ import {MatStep} from "@angular/material/stepper";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {StudentService} from "../../student/student.service";
 import {AsyncSubject, BehaviorSubject, combineLatest, Observable, Subject, Subscription} from "rxjs";
-import {debounceTime, map, shareReplay, startWith, tap} from "rxjs/operators";
+import {debounceTime, map, shareReplay, startWith} from "rxjs/operators";
 import * as equal from "fast-deep-equal"
 import {ActivatedRoute} from "@angular/router";
 import {CommentService} from "../../shared/comment/comment.service";
@@ -16,7 +16,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogComponent} from "../../shared/dialog/dialog.component";
 import {BioDoc} from "./biodoc.model";
 import {SelectionModel} from "@angular/cdk/collections";
-import {employedHereValidator, InternshipInfoDirective, otherSiteValidator} from "./internship-info.directive";
+import {employedHereValidator, otherSiteValidator} from "./internship-info.directive";
 import {AppProgressType} from "../../shared/models/AppProgressType";
 
 // TODO save bio form fields into store and load only if it's the same user.
@@ -185,7 +185,7 @@ export class BioComponent implements OnInit, OnDestroy {
       this.studentId = this.route.snapshot.paramMap.get('studentId') as string;
       this.commentService.setAppId(this.route.snapshot.paramMap.get('studentId'))
     }
-    this.bioCommentsSub = this.commentService.getCommentThreadsChanged().subscribe((commentThreads) => {
+    this.bioCommentsSub = this.commentService.commentsChanged$.subscribe((commentThreads) => {
       this.bioCommentThreads = commentThreads;
     })
     this.commentService.getCommentThreads();
@@ -430,7 +430,7 @@ export class BioComponent implements OnInit, OnDestroy {
     return Number((validControls / totalControls) * 100).toFixed(2);
   }
 
-  isStudent() {
+  isCoordinator() {
     return !!this.studentId;
   }
 

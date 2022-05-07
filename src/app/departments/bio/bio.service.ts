@@ -5,7 +5,7 @@ import {BioApplication} from "./bio.model";
 import { saveAs } from 'file-saver';
 import {CommentThread} from "../../shared/comment/comment-thread.model";
 import {BioDoc} from "./biodoc.model";
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
