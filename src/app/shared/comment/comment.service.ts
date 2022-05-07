@@ -6,7 +6,7 @@ import {ComponentPortal} from "@angular/cdk/portal";
 import {CommentComponent} from "./comment.component";
 import {ReplaySubject} from "rxjs";
 import {CommentThread} from "./comment-thread.model";
-import {map, switchMap, take} from "rxjs/operators";
+import {map, switchMap} from "rxjs/operators";
 import {ProfileService} from "../../user/profile/profile.service";
 import {Profile} from "../../user/profile/profile-model";
 
