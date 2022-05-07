@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileIconComponent } from './profile-icon.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('ProfileIconComponent', () => {
   let component: ProfileIconComponent;
@@ -8,6 +9,9 @@ describe('ProfileIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+      ],
       declarations: [ ProfileIconComponent ]
     })
     .compileComponents();
