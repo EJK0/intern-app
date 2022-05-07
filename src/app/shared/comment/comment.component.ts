@@ -18,10 +18,10 @@ export class CommentComponent implements OnInit {
   isCommentThread: boolean = true;
 
   constructor(private commentService: CommentService,
-              @Inject(DATA_TOKEN) private data: {isComment: boolean, threadId: string}) { }
+              @Inject(DATA_TOKEN) private data: {isCommentThread: boolean, threadId: string}) { }
 
   ngOnInit(): void {
-    this.isCommentThread = this.data.isComment;
+    this.isCommentThread = this.data.isCommentThread;
   }
 
   onSubmit() {

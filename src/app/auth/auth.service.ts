@@ -7,6 +7,7 @@ import * as moment from "moment/moment";
 import {tap} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 import {UserService} from "../user/user.service";
+import {ProfileService} from "../user/profile/profile.service";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +18,8 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient,
               private router: Router,
-              private userService: UserService) {}
+              private userService: UserService,
+              private profileService: ProfileService) {}
 
   createStudent(name: string, email: string, password: string) {
     const authData: AuthData = {email: email, password: password}
@@ -37,6 +39,7 @@ export class AuthService {
         AuthService.setSession({token, expiresIn, userRole});
         this.userService.userName.next(name);
         this.userService.userEmail.next(email);
+        this.profileService.getProfile();
       }
     )).subscribe(res => {
       const userRole = res.userRole.toLowerCase();

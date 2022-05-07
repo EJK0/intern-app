@@ -18,7 +18,7 @@ export const DATA_TOKEN = new InjectionToken('commentThreadData');
 export class CommentService {
   overlayRef!: OverlayRef | null;
   private commentThreads!: CommentThread[];
-  private commentsChanged = new Subject<CommentThread[]>();
+  private commentsChanged = new ReplaySubject<CommentThread[]>();
   private appId: string = 'student';
 
   constructor(private overlay: Overlay,
@@ -26,9 +26,9 @@ export class CommentService {
               private profileService: ProfileService) { }
 
 
-  open(isComment: boolean, threadId?: string) {
+  open(isCommentThread: boolean, threadId?: string) {
     const portalInjector = Injector.create({
-      providers: [{ provide: DATA_TOKEN, useValue: {isComment: isComment, threadId: threadId }}],
+      providers: [{ provide: DATA_TOKEN, useValue: {isCommentThread: isCommentThread, threadId: threadId }}],
     })
     this.overlayRef = this.overlay.create();
     const componentPortal = new ComponentPortal(CommentComponent,
@@ -50,13 +50,13 @@ export class CommentService {
       subject: subject,
       body: body,
     }
+
     this.httpClient
       .post<{message: string, commentThread: CommentThread}>( environment.apiUrl + 'comments', newCommentThread)
       .pipe(
-        map((res) => {
-          this.profileService.userProfile
-            .subscribe(profile => {
-            const newCommentThread = {
+        switchMap(res => this.profileService.userProfile.pipe(
+          map(profile => {
+            return {
               ...res.commentThread,
               comments: [
                 {
@@ -65,16 +65,15 @@ export class CommentService {
                   profile: profile,
                 }
               ]
-            }
-            this.commentThreads.push(newCommentThread);
-            this.commentsChanged.next(this.commentThreads);
-          });
-        })
-    ).subscribe(() => {
+            };
+          })
+        ))
+      ).subscribe((newCommentThread) => {
+      console.log("New comment thread...", newCommentThread);
+      this.commentThreads.push(newCommentThread);
+      this.commentsChanged.next(this.commentThreads);
       this.close();
-    }, (error => {
-      console.log("Error adding comment thread: ", error);
-    }));
+    })
   }
 
   getCommentThreads() {
@@ -100,29 +99,29 @@ export class CommentService {
       threadId: threadId,
       body: body,
     }
+
     this.httpClient.post<{message: string, comment: {
         comment: string,
         commentAuthor: string,
         profile: Profile
-      }}>( environment.apiUrl + 'comments/new-comment', commentThread).pipe(
-        map(res => {
-          console.log(res);
-          let ct = this.commentThreads.find(el => el._id === threadId);
-          this.profileService.userProfile.subscribe(profile => {
+      }}>(environment.apiUrl + 'comments/new-comment', commentThread).pipe(
+        switchMap(res => this.profileService.userProfile.pipe(
+          map(profile => {
+            console.log("logging profile ", profile)
+            let ct = this.commentThreads.find(el => el._id === threadId);
             ct?.comments.push({
               comment: body,
               commentAuthor: profile.name,
               commentEmail: profile.email,
               profile: profile,
-            })
-          });
-          this.commentsChanged.next(this.commentThreads);
-        })
+            });
+            console.log('logging comment threads', this.commentThreads)
+            this.commentsChanged.next(this.commentThreads);
+          })
+        ))
     ).subscribe(() => {
       this.close();
-    }, error => {
-      console.log("There was error adding the comment: ", error);
-    });
+    })
   }
 
   setAppId(studentId: string | null) {
@@ -131,7 +130,7 @@ export class CommentService {
     }
   }
 
-  getCommentThreadsChanged() {
-    return this.commentsChanged.asObservable();
+  get commentsChanged$() {
+    return this.commentsChanged;
   }
 }
