@@ -1,0 +1,13 @@
+language: node_js
+addons:
+  chrome: stable
+node_js:
+  - 16
+before_install:
+  - npm i -g npm@7.24.2
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+deploy:
+  provider: heroku
+  api_key:
+    secure: R9tbOOUU00Cvo/FCrZ+/Aru+PxvB+yTrA7tO5MivOOaU85o2p7J+EcnRqbyM7JkRPsPesyyKS5xS63WxjXjuoOWZ/InYrg+eT8vFjBvcL779PJEq39wv+Jk10NWHHep22iFPMir3THLZeBfOvAqRlh3bKFmVki1l8iOfGNEQ8mxLRamTu+YyV7qzuuDBbqVhva2687dc1iV45LLGTfLU9u25EwUsvZRIuktD2okvq2tVh5im/bcKtnhO22hkvAvHJ3bzwpqxPykN7gml5+fhYRb7QJ6yrEt7BmpMTbF2LJV9wV2bR9zCpVmUCxcJa8VW2tllJOxW6PZf8YVmY4IX8rGTBZHhMmmc0dYxWYYEI67kItpm0yRHL/oUJip8XJjLJDXLHlflLYzqFRqNsY6wF0msY6rfSHgMTCygPdMzBYjvvWb1AWx4xEijF73cl5s6A7ingqfEak0XY/9s0YAKHGd5XLZV+PrCSu3a6c84eJyN0x++ENjtGayPyv+QT8Tio1gpgfWONy6gMHmBmjBTFaDgRpedW1/GEMKYqpWjiRMZSe8G1H/QxM8JxQFnhoJC63HubuDZdH3sHgHjiw4VFDvzN5lMT6aeM76XCqI3fQGS95daG+owSQ1c2DUmbMeV+Mq2R6QZUFsV1g/5EdqSb5fCyVcXK/jrRCADoWmbYis=
+  app: shrouded-dusk-22324
