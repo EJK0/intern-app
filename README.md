@@ -1,4 +1,4 @@
-# [InternApp 2.0](https://shrouded-dusk-22324.herokuapp.com/auth/login)
+# [InternApp 2.0](https://shrouded-dusk-22324.herokuapp.com/auth/login) [![Build Status](https://app.travis-ci.com/EJK0/intern-app.svg?branch=main)](https://app.travis-ci.com/EJK0/intern-app)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.6.
 
