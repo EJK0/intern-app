@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {BioApplication} from "./bio.model";
 import { saveAs } from 'file-saver';
-import {CommentThread} from "../../shared/comment/comment-thread.model";
 import {BioDoc} from "./biodoc.model";
 import {BehaviorSubject} from "rxjs";
 
