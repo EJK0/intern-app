@@ -325,6 +325,7 @@ export class BioComponent implements OnInit, OnDestroy {
     this.bioCommentsSub.unsubscribe();
     this.bioStoreSub.unsubscribe();
     this.bioService.clearDocs();
+    this.bioCommentThreads = [];
   }
 
   onSaveApplication() {
