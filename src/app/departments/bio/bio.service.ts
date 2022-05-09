@@ -21,26 +21,6 @@ export class BioService {
     'Gwinnett County (Water Resources, Environmental Health and Police Departments)',
     'Consultorio Medico Hispano',
   ];
-  bioAppComments: CommentThread[] = [];
-  // TODO The docs should be subdocs in the bio mongoose schema and a part of a bio app that way.
-  // bioAppDocs: {position: number, filetype: string, filename: string, date_uploaded: string}[] = [{
-  //   position: 1,
-  //   filename: 'essay.docx',
-  //   filetype: 'Essay',
-  //   date_uploaded: new Date(Date.UTC(2021, 8, 14, 4,42,12)).toLocaleString(),
-  // },
-  //   {
-  //     position: 2,
-  //     filetype: 'Transcript',
-  //     filename: 'unofficial_transcript.pdf',
-  //     date_uploaded: new Date(Date.UTC(2021, 9, 25, 7,13,54)).toLocaleString(),
-  //   },
-  //   {
-  //     position: 3,
-  //     filetype: 'Preceptor Form',
-  //     filename: 'preceptor.docx',
-  //     date_uploaded: new Date(Date.UTC(2021, 11, 3, 1,28,4)).toLocaleString(),
-  //   }];
   bioAppDocs: {position: number, filetype: string, filename: string, date_uploaded: string}[] = []
   private docs = new BehaviorSubject<Array<BioDoc>>([]);
   private counter: number = 1;
@@ -163,28 +143,6 @@ export class BioService {
         dateUploaded: new Date(doc.dateUploaded).toLocaleDateString(),
       }
     ]);
-    // if (this.docs.value.length > 0) {
-    //   this.bioDocs.next([
-    //     ...this.docs.value,
-    //     {
-    //       position: this.counter++,
-    //       fileName: doc.fileName,
-    //       fileType: doc.fileType,
-    //       dateUploaded: new Date(doc.dateUploaded).toLocaleDateString(),
-    //     }
-    //   ]);
-    //   console.log('BIO DOC VALUE: ' , this.docs.value)
-    // } else {
-    //   this.bioDocs.next([
-    //     {
-    //       position: this.counter++,
-    //       fileName: doc.fileName,
-    //       fileType: doc.fileType,
-    //       dateUploaded: new Date(doc.dateUploaded).toLocaleDateString(),
-    //     }
-    //   ]);
-    //   console.log('BIO DOC VALUE IN ELSE: ' , this.docs.value)
-    // }
   }
 
   clearDocs() {
