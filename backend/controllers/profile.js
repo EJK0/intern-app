@@ -25,10 +25,3 @@ module.exports.getProfile = async (req, res) => {
     profile: profile,
   });
 };
-
-const makeProfilePicFromName = (name) => {
-  const initials = name.toString().toUpperCase().split(' ')
-      .map((el) => el.toString().substring(0, 1)).join('');
-  console.log(initials);
-  return initials;
-};
