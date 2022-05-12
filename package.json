@@ -9,6 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:angular": "ng serve",
+    "start:angular-no-hostcheck": "ng serve --disable-host-check",
     "start:server": "nodemon server.js",
     "start:database": "mongod --dbpath ~/data/db/",
     "lint": "ng lint"
