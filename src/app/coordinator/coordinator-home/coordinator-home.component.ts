@@ -72,8 +72,6 @@ export class CoordinatorHomeComponent implements OnInit, AfterViewInit {
     this.coordinatorService.markApplicationApproved(application._id);
   }
 
-  onLeaveComment() {}
-
   handleEditorInit(e: any) {
     this.editorSubject.next(e.editor);
     this.editorSubject.complete();
@@ -84,7 +82,6 @@ export class CoordinatorHomeComponent implements OnInit, AfterViewInit {
     if (this.editAnnouncements) {
       this.announcements.controls["body"].patchValue(this.announcementsService.getAnnouncements());
     }
-
   }
 
   submitAnnouncements() {
@@ -98,6 +95,5 @@ export class CoordinatorHomeComponent implements OnInit, AfterViewInit {
       }, 2000)
     });
   }
-
 
 }
