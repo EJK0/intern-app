@@ -6,7 +6,6 @@
     "types": [
       "jasmine"
     ],
-    "noUnusedLocals": true
   },
   "files": [
     "src/test.ts",
