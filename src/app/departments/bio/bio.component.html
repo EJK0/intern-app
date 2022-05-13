@@ -37,7 +37,11 @@
 
 <div class="application-container">
   <div class="application-actions">
-    <button mat-icon-button type="submit" color="primary" matTooltipShowDelay="750" matTooltip="Save application" (click)="onSaveApplication()" [disabled]="isDirty$ | async">
+    <div class="student-info" *ngIf="isCoordinator()">
+      <h4><b>Student name: </b>{{ this.getStudentName() }}</h4>
+      <h4><b>Student email: </b><a [href]="'mailto:' + getStudentEmail()">{{ this.getStudentEmail() }}</a></h4>
+    </div>
+    <button class="save-button" mat-icon-button type="submit" color="primary" matTooltipShowDelay="350" matTooltip="Save application" (click)="onSaveApplication()" [disabled]="isDirty$ | async">
       <mat-icon>save</mat-icon></button>
   </div>
   <mat-tab-group mat-stretch-tabs>

@@ -73,7 +73,6 @@ table.mat-table {
   align-content: center;
   align-items: center;
   display: flex;
-  justify-content: flex-end;
   padding: 8px 8px 8px 16px;
 }
 
@@ -81,6 +80,14 @@ table.mat-table {
   border: 1px solid lightgray;
   border-radius: 4px;
   margin: 24px 0;
+}
+
+.student-info {
+  padding: 10px;
+}
+
+.save-button {
+  margin-left: auto;
 }
 
 td, th {
