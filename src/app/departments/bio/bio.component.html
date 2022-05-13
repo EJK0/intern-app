@@ -607,12 +607,13 @@
 
           <mat-step [stepControl]="signature" [errorMessage]="errorMsg">
             <form [formGroup]="signature">
-              <h4><b style="color: red">Applicant's Statement</b></h4>
+              <h4><b>Applicant's Statement</b></h4>
               <hr>
               <div>
                 <h4>
                   I certify that the information contained in this application is true, correct, and complete. I understand that, if employed, false statements reported on this application may be considered sufficient cause for denial of a Biology Internship Experience and enrollment in the BIOL4800 Biology Internship course.
                 </h4>
+                <h5><b style="color: red">NOTE</b>: Your printed name is your legal signature</h5>
               </div>
 
               <ng-template matStepLabel>Sign and Submit</ng-template>
