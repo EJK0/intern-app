@@ -53,27 +53,23 @@ export class CommentService {
 
     this.httpClient
       .post<{message: string, commentThread: CommentThread}>( environment.apiUrl + 'comments', newCommentThread)
-      .pipe(
-        switchMap(res => this.profileService.userProfile.pipe(
-          map(profile => {
-            return {
-              ...res.commentThread,
-              comments: [
-                {
-                  ...res.commentThread.comments[0],
-                  commentEmail: profile.email,
-                  profile: profile,
-                }
-              ]
-            };
-          })
-        ))
-      ).subscribe((newCommentThread) => {
+      .subscribe((res) => {
+        const newCommentThread = {
+          ...res.commentThread,
+          comments: [
+            {
+              ...res.commentThread.comments[0],
+              commentEmail: this.profileService.userProfile.email,
+              profile: this.profileService.userProfile
+            }
+          ]
+        }
       console.log("New comment thread...", newCommentThread);
       this.commentThreads.push(newCommentThread);
       this.commentsChanged.next(this.commentThreads);
       this.close();
     })
+
   }
 
   getCommentThreads() {
@@ -104,24 +100,19 @@ export class CommentService {
         comment: string,
         commentAuthor: string,
         profile: Profile
-      }}>(environment.apiUrl + 'comments/new-comment', commentThread).pipe(
-        switchMap(res => this.profileService.userProfile.pipe(
-          map(profile => {
-            console.log("logging profile ", profile)
-            let ct = this.commentThreads.find(el => el._id === threadId);
-            ct?.comments.push({
-              comment: body,
-              commentAuthor: profile.name,
-              commentEmail: profile.email,
-              profile: profile,
-            });
-            console.log('logging comment threads', this.commentThreads)
-            this.commentsChanged.next(this.commentThreads);
-          })
-        ))
-    ).subscribe(() => {
+      }}>(environment.apiUrl + 'comments/new-comment', commentThread).subscribe((res) => {
+      let ct = this.commentThreads.find(el => el._id === threadId);
+      ct?.comments.push({
+        comment: body,
+        commentAuthor: this.profileService.userProfile.name,
+        commentEmail: this.profileService.userProfile.email,
+        profile: this.profileService.userProfile,
+      });
+      console.log('logging comment threads', this.commentThreads)
+      this.commentsChanged.next(this.commentThreads);
       this.close();
     })
+
   }
 
   setAppId(studentId: string | null) {

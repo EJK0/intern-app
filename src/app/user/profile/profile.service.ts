@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Profile} from "./profile-model";
-import {ReplaySubject} from "rxjs";
+import {Subject} from "rxjs";
+import {map, publishReplay, refCount} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  private profile = new ReplaySubject<Profile>(1);
+  private profile!: Profile;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,16 +19,13 @@ export class ProfileService {
 
   // TODO need to merge userService and profileService. They're redundant at this point, and I'm leaning towards merging U into P.
   getProfile() {
-    this.httpClient.get<{profile: Profile}>(environment.apiUrl + 'profile').subscribe((res) => {
-      this.profile.subscribe(val => {
-        console.log('logging profile ', val)
-      })
-      this.profile.next(res.profile)
-    })
-  }
-
-  updateProfile() {
-
+    this.httpClient.get<{profile: Profile}>(environment.apiUrl + 'profile')
+      .pipe(
+        map(res => this.profile = res.profile),
+        publishReplay(1),
+        refCount()
+      )
+      .subscribe()
   }
 
   get userProfile() {
