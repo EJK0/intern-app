@@ -306,7 +306,7 @@ export class BioComponent implements OnInit, OnDestroy {
   // TODO this won't update whether the documents formControl is valid unlike saveApp. Requires a separate server check and update of the document's completed field in order to update home without a saveApp call.
   onFilePicked(event: Event, fileType: string) {
     if (this.studentId) {
-      this._snackBar.open('Only the student may upload documents for their application', 'OK');
+      this._snackBar.open('Only the student may upload documents for their application. You should message them if you need a particular document.', 'Got it');
       return;
     }
     const file: File = (<HTMLInputElement>event.target).files![0];
@@ -332,7 +332,7 @@ export class BioComponent implements OnInit, OnDestroy {
     console.log('documents validity')
     console.log(this.documents.valid);
     if (this.studentId) {
-      this._snackBar.open('Only the student that owns this application has permission to edit it', 'OK');
+      this._snackBar.open('Only the student of this application may edit it. If you think the student has input wrong information, message them to update their application with the right information.', 'Got it');
       return;
     }
     const bioAppToServer = {
@@ -558,7 +558,7 @@ export class BioComponent implements OnInit, OnDestroy {
 
   deleteFiles(file: any) {
     if (this.studentId) {
-      this._snackBar.open('Only the student may delete their documents.', 'OK');
+      this._snackBar.open('Only the student may delete their documents. If the student has uploaded the wrong document, message them to delete and upload the correct one.', 'Got it');
       return;
     }
     if (this.selection.selected.length > 0) {
