@@ -17,3 +17,12 @@ td, th {
   background-color: #DAF7A6;
   padding-left: 10px;
 }
+
+tr.application-row:hover {
+  /*
+  Kind of like this color too...
+  background: #62eb3f;
+  */
+  background: #DAF7A6;
+  cursor: pointer;
+}
