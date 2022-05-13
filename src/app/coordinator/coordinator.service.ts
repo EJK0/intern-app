@@ -16,9 +16,9 @@ export class CoordinatorService {
     return this.httpClient.get<{studentApplications: ApplicationData[]}>(environment.apiUrl + 'coordinator/departments')
   }
 
-  getApplication(dept: string, studentId: string) {
+  getApplication(application: ApplicationData) {
     // TODO will need to change this if IT is added
-    this.router.navigate(['/bio', {studentId: studentId, isCoordinator: true}])
+    this.router.navigate(['/bio', {studentId: application._id, isCoordinator: true, studentName: application.name, studentEmail: application.email}])
   }
 
   markApplicationNeedsChanges(studentId: string) {
