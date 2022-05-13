@@ -4,7 +4,7 @@
 </app-spinner-overlay>
 <div class="instructions-title">
   <h2>Biology (BIOL 4800) Internship Application Instructions</h2>
-  <button mat-icon-button type="button" class="btn" color="primary" matTooltipShowDelay="750" matTooltip="Edit instructions" *ngIf="instructionsEditable" (click)="toggleInstructionsMode()">
+  <button mat-icon-button type="button" class="btn" color="primary" matTooltipShowDelay="350" matTooltip="Edit instructions" *ngIf="instructionsEditable" (click)="toggleInstructionsMode()">
     <mat-icon>edit</mat-icon>
   </button>
 </div>
@@ -715,8 +715,8 @@
               </mat-card-content>
             </mat-card>
             <mat-action-row>
-              <button mat-icon-button matTooltip="Reply to comment thread" matTooltipShowDelay="750" class="btn" color="primary" (click)="addComment(commentThread._id)"><mat-icon>reply</mat-icon></button>
-              <button *ngIf="this.isCoordinator()" mat-icon-button matTooltip="Delete comment thread" matTooltipShowDelay="750" class="btn" color="warn" (click)="openDialog(commentThread._id)"><mat-icon>delete</mat-icon></button>
+              <button mat-icon-button matTooltip="Reply to comment thread" matTooltipShowDelay="350" class="btn" color="primary" (click)="addComment(commentThread._id)"><mat-icon>reply</mat-icon></button>
+              <button *ngIf="this.isCoordinator()" mat-icon-button matTooltip="Delete comment thread" matTooltipShowDelay="350" class="btn" color="warn" (click)="openDialog(commentThread._id)"><mat-icon>delete</mat-icon></button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
