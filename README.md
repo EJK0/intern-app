@@ -30,5 +30,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-For any questions, you shoot me an email (ephraimkim1@gmail.com).
+For any questions, you can [shoot me an email](mailto:ephraimkim1@gmail.com).
 
