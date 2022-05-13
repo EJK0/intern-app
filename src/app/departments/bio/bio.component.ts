@@ -432,7 +432,7 @@ export class BioComponent implements OnInit, OnDestroy {
   }
 
   isCoordinator() {
-    return !!this.studentId;
+    return this.route.snapshot.paramMap.get('isCoordinator');
   }
 
   handleEditorInit(e: any) {
@@ -659,6 +659,20 @@ export class BioComponent implements OnInit, OnDestroy {
     } else {
       this.getOtherDocument().insert(0 , this._formBuilder.control(otherDoc));
     }
+  }
+
+  getStudentName() {
+    if (this.route.snapshot.paramMap.get('studentName') !== null) {
+      return this.route.snapshot.paramMap.get('studentName');
+    }
+    return;
+  }
+
+  getStudentEmail() {
+    if (this.route.snapshot.paramMap.get('studentEmail') !== null) {
+      return this.route.snapshot.paramMap.get('studentEmail');
+    }
+    return;
   }
 }
 

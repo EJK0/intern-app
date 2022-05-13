@@ -58,8 +58,8 @@ export class CoordinatorHomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onViewApplication(application: any) {
-    this.coordinatorService.getApplication( application.type, application._id);
+  onViewApplication(application: ApplicationData) {
+    this.coordinatorService.getApplication(application);
   }
 
   onMarkNeedsChanges(application: any) {
