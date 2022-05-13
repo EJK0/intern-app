@@ -3,5 +3,6 @@ export interface ApplicationData {
   name: string;
   progress: string;
   status: string;
+  type: string;
   _id: string;
 }
