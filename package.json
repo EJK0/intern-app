@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@tinymce/tinymce-angular": "^4.2.4",
+    "aws-sdk": "^2.1135.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
