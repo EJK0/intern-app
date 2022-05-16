@@ -7,7 +7,7 @@ import {MatStep} from "@angular/material/stepper";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {StudentService} from "../../student/student.service";
 import {AsyncSubject, BehaviorSubject, combineLatest, Observable, Subject, Subscription} from "rxjs";
-import {debounceTime, map, shareReplay, startWith} from "rxjs/operators";
+import {concatMap, debounceTime, map, shareReplay, startWith, tap} from "rxjs/operators";
 import * as equal from "fast-deep-equal"
 import {ActivatedRoute} from "@angular/router";
 import {CommentService} from "../../shared/comment/comment.service";
@@ -314,7 +314,7 @@ export class BioComponent implements OnInit, OnDestroy {
       this.uploadEssay(file);
     } else if (fileType === 'Transcript') {
       this.uploadTranscript(file);
-    } else {
+    } else if (fileType) {
       this.uploadOtherDoc(file, fileType);
     }
   }
@@ -540,10 +540,10 @@ export class BioComponent implements OnInit, OnDestroy {
     if (this.studentId) {
       if (this.selection.selected.length > 0) {
         this.selection.selected.forEach((doc) => {
-          this.bioService.downloadDoc(doc.fileType, doc.filePath, doc.fileName, this.studentId);
+          this.bioService.downloadDoc(doc.fileType, doc.filePath, doc.fileName);
         });
       } else {
-        this.bioService.downloadDoc(file.fileType, file.filePath, file.fileName, this.studentId);
+        this.bioService.downloadDoc(file.fileType, file.filePath, file.fileName);
       }
     } else {
       if (this.selection.selected.length > 0) {
@@ -597,10 +597,13 @@ export class BioComponent implements OnInit, OnDestroy {
     }
     this.bioService.uploadDoc(
       docInfo,
-      file).subscribe((res) => {
-      this.updateEssay(res.documents.essay[0])
-      this.bioService.updateDocs(res);
-      this.studentService.setAppProgress(this.calcAppProgress());
+      file)
+      .pipe(
+        tap(res => this.bioService.uploadToBucket(file, res.documents.essay[0])))
+      .subscribe((res) => {
+        this.updateEssay(res.documents.essay[0])
+        this.bioService.updateDocs(res);
+        this.studentService.setAppProgress(this.calcAppProgress());
     });
     this.essayFileName = file.name;
   }
@@ -621,7 +624,10 @@ export class BioComponent implements OnInit, OnDestroy {
     }
     this.bioService.uploadDoc(
       docInfo,
-      file).subscribe((res) => {
+      file)
+      .pipe(
+        tap(res => this.bioService.uploadToBucket(file, res.documents.transcript[0])))
+      .subscribe((res) => {
       this.updateTranscript(res.documents.transcript[0]);
       this.bioService.updateDocs(res);
       this.studentService.setAppProgress(this.calcAppProgress());
@@ -645,7 +651,10 @@ export class BioComponent implements OnInit, OnDestroy {
     }
     this.bioService.uploadDoc(
       docInfo,
-      file).subscribe((res) => {
+      file)
+      .pipe(
+        tap(res => this.bioService.uploadToBucket(file, res.documents.otherDoc[res.documents.otherDoc.length - 1])))
+      .subscribe((res) => {
       this.updateOtherDoc(res.documents.otherDoc[res.documents.otherDoc.length - 1]);
       this.bioService.updateDocs(res);
       this.studentService.setAppProgress(this.calcAppProgress());

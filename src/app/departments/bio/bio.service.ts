@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {BioApplication} from "./bio.model";
-import { saveAs } from 'file-saver';
 import {BioDoc} from "./biodoc.model";
 import {BehaviorSubject} from "rxjs";
 
@@ -47,30 +46,47 @@ export class BioService {
     return this.bioAppDocs.slice();
   }
 
-  downloadDoc(fileType: string, filePath: string, fileName: string, appId?: string) {
-    if (!appId) {
-      appId = 'student';
-    }
-    const params = appId + "/" + fileType + "/" + filePath + "/" + fileName;
-    this.httpClient.get(environment.apiUrl + 'bio/doc/' + params, {responseType: "blob"})
-      .toPromise()
-      .then(blob => {
-        saveAs(blob, fileName);
-        }
-      )
-      .catch(error => {
-        console.log(error);
-      });
+  // TODO Remove fileType parameter
+  downloadDoc(fileType: string, filePath: string, fileName: string) {
+    const queryParams = `?filePath=docs/${filePath}`;
 
+    this.httpClient.get<{ signedRequest: string, url: string }>(environment.apiUrl + 'bucket/sign-s3-download' + queryParams)
+      .subscribe(bucketData => {
+        const xhr = new XMLHttpRequest();
+        let link = document.createElement('a');
+        xhr.open('GET', bucketData.signedRequest);
+        xhr.responseType = 'blob'
+        xhr.onload = () => {
+          const file = new Blob([xhr.response])
+          link.href = window.URL.createObjectURL(file);
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+        xhr.send()
+      })
   }
 
-  uploadDoc(docInfo: {fileName: string, fileType: string, dateUploaded: string}, document: File) {
+  uploadDoc(docInfo: { fileName: string, fileType: string, dateUploaded: string }, document: File) {
     const docData = new FormData();
     docData.append('fileName', docInfo.fileName);
     docData.append('fileType', docInfo.fileType);
     docData.append('dateUploaded', docInfo.dateUploaded);
     docData.append('document', document)
-    return this.httpClient.post<{documents: { essay: Array<BioDoc>, transcript: Array<BioDoc>, otherDoc: Array<BioDoc> }}>(environment.apiUrl + 'bio/doc/upload', docData);
+
+    return this.httpClient.post<{ documents: { essay: Array<BioDoc>, transcript: Array<BioDoc>, otherDoc: Array<BioDoc> } }>(environment.apiUrl + 'bio/doc/upload', docData);
+  }
+
+  uploadToBucket(file: File, document: BioDoc) {
+    const queryParams = `?fileName=docs/${document.filePath}&fileType=${document.fileType}`;
+
+    this.httpClient.get<{ signedRequest: string, url: string }>(environment.apiUrl + 'bucket/sign-s3-upload' + queryParams)
+      .subscribe(bucketData => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', bucketData.signedRequest);
+        xhr.send(file);
+      })
   }
 
   deleteDoc(fileType: string, filePath: string) {
@@ -83,7 +99,6 @@ export class BioService {
     this.httpClient
       .post<{message: string, savedFormData: BioApplication}>(environment.apiUrl + 'bio/save', formData)
       .subscribe(res => {
-        console.log(res.savedFormData);
         console.log(res.message);
       });
   }
