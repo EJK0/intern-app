@@ -1,4 +1,3 @@
-const User = require('../models/user');
 const Student = require('../models/student');
 const BioApps = require('../models/bio/form');
 const bcrypt = require('bcrypt');
@@ -26,6 +25,7 @@ module.exports.createStudent = (req, res) => {
           res.status(500).json({
             message: 'Failed to create account!',
           });
+          console.log(err);
         });
       },
   );

@@ -12,7 +12,7 @@
 
 <form [formGroup]="instructions" *ngIf="instructionsMode === 'edit'">
   <div class="mat-form-field-wrapper">
-    <editor  apiKey="du9m1saikikpw691ehhwqki94t27ghy6pyvfgwrnl73bperk"
+    <editor apiKey="du9m1saikikpw691ehhwqki94t27ghy6pyvfgwrnl73bperk"
       formControlName="body"
       class="mat-elevation-z1"
       (onInit)="handleEditorInit($event)"
@@ -534,7 +534,7 @@
             <form [formGroup]="documents">
               <ng-template matStepLabel>Upload Documents</ng-template>
               <div class="sub-step">
-                <h4>Click the panels below to see specific instructions for the document type and the upload button. The application is automatically saved when a document is uploaded.</h4>
+                <h4>Click the panels below to see specific instructions for the document type and the upload button. This is only the place for <b>uploading</b> documents. To see the documents, you must navigate to the documents tab (between the Application and Comments tab).</h4>
               </div>
               <mat-accordion class="example-headers-align">
                 <mat-expansion-panel>

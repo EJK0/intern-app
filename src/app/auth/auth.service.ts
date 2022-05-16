@@ -60,7 +60,7 @@ export class AuthService {
       setTimeout(() => {
         this.loggedIn.next(false);
       }, 2000)
-    })
+    });
   }
 
   private static setSession(authResult: {token: string, expiresIn: number, userRole: string}) {

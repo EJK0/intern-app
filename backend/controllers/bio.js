@@ -82,7 +82,6 @@ module.exports.downloadDoc = async (req, res) => {
 };
 
 module.exports.uploadDoc = (req, res) => {
-  console.log(req.body);
   if (req.body.fileType === 'Essay') {
     BioApps.findOneAndUpdate({'userId': req.userData.userId},
         {
