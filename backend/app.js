@@ -6,7 +6,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const bucketRoutes = require('./routes/bucket');
 const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
@@ -19,15 +18,14 @@ const announcementsRoutes = require('./routes/announcements');
 const app = express();
 app.use(cors());
 
-// DB params
+// Local
 let mongoDB;
 if (app.settings.env === 'development') {
   mongoDB = process.env.LOCAL_DB;
 } else {
   mongoDB = process.env.PROD_DB;
 }
-
-// MongoDB connection
+// Atlas
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 mongoose.connect(mongoDB, options);
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error: '));
@@ -46,7 +44,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/images', express.static(path.join('backend/images')));
 app.use('/docs', express.static(path.join('backend/docs')));
-app.use('/api/bucket', bucketRoutes);
 app.use('/api/posts', postsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/profile', profileRoutes);
