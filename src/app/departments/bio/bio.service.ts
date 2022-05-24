@@ -75,7 +75,9 @@ export class BioService {
     docData.append('dateUploaded', docInfo.dateUploaded);
     docData.append('document', document)
 
-    return this.httpClient.post<{ documents: { essay: Array<BioDoc>, transcript: Array<BioDoc>, otherDoc: Array<BioDoc> } }>(environment.apiUrl + 'bio/doc/upload', docData);
+    return this.httpClient.post<{ documents:
+        { essay: Array<BioDoc>, transcript: Array<BioDoc>, otherDoc: Array<BioDoc> }
+    }>(environment.apiUrl + 'bio/doc/upload', docData);
   }
 
   uploadToBucket(file: File, document: BioDoc) {
