@@ -451,11 +451,8 @@ export class BioComponent implements OnInit, OnDestroy {
   onSubmitInstructions() {
     this.instructionsLoading = true;
     this.bioService.updateInstructions(this.instructions.controls['body'].value).subscribe(() => {
-      // TODO timeout only here for demonstration purposes. must be removed if app deployed.
-      setTimeout(() => {
-        this.instructionsLoading = false;
-        this.toggleInstructionsMode();
-      }, 3000)
+      this.instructionsLoading = false;
+      this.toggleInstructionsMode();
     })
   }
 

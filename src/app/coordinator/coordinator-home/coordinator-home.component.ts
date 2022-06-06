@@ -90,9 +90,7 @@ export class CoordinatorHomeComponent implements OnInit, AfterViewInit {
       this.toggleAnnouncementsMode();
       this.announcementsLoading = false;
     }, error => {
-      setTimeout(() => {
-        this.announcementsLoading = false;
-      }, 2000)
+      this.announcementsLoading = false;
     });
   }
 

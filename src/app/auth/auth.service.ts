@@ -26,10 +26,9 @@ export class AuthService {
     this.httpClient.post(environment.apiUrl + 'student/signup', {name: name, ...authData}).subscribe((res) => {
       this.login(email, password);
     }, error => {
-      setTimeout(() => {
-        this.loggedIn.next(false);
-      }, 2000)
-    })
+      console.log(error);
+      this.loggedIn.next(false);
+    });
   }
 
   login(email: string, password: string) {
@@ -56,10 +55,8 @@ export class AuthService {
       }
       this.autoLogout();
     }, error => {
-      console.log(error)
-      setTimeout(() => {
-        this.loggedIn.next(false);
-      }, 2000)
+      console.log(error);
+      this.loggedIn.next(false);
     });
   }
 

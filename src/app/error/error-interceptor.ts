@@ -13,9 +13,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        setTimeout(() => {
-          this.dialog.open(ErrorComponent, {data: {message: error.error.message}});
-        }, 2000);
+        this.dialog.open(ErrorComponent, {data: {message: error.error.message}});
         return throwError(error);
       })
     )

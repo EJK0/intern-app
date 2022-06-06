@@ -43,9 +43,7 @@ export class PostCreateComponent implements OnInit {
             imagePath: postData.post.imagePath
           }
           this.imagePreview = <string>postData.post.imagePath;
-          setTimeout(() => {
-            this.isLoading = false;
-          }, 500)
+          this.isLoading = false;
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
