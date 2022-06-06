@@ -16,9 +16,19 @@ export class CoordinatorService {
     return this.httpClient.get<{studentApplications: ApplicationData[]}>(environment.apiUrl + 'coordinator/applications')
   }
 
-  getApplication(application: ApplicationData) {
-    // TODO will need to change this if IT is added
-    this.router.navigate(['/bio', {studentId: application._id, isCoordinator: true, studentName: application.name, studentEmail: application.email}])
+  getApplication(application: ApplicationData, middleMouseClicked?: boolean) {
+    // TODO will need to change these if IT is added
+    if (middleMouseClicked) {
+      const url = this.router.serializeUrl(this.router.createUrlTree(['/bio', {
+        studentId: application._id,
+        isCoordinator: true,
+        studentName: application.name,
+        studentEmail: application.email
+      }]));
+      window.open(url, '_blank');
+    } else {
+      this.router.navigate(['/bio', {studentId: application._id, isCoordinator: true, studentName: application.name, studentEmail: application.email}]);
+    }
   }
 
   markApplicationNeedsChanges(studentId: string) {

@@ -94,4 +94,11 @@ export class CoordinatorHomeComponent implements OnInit, AfterViewInit {
     });
   }
 
+  auxClick(event: any, application: ApplicationData) {
+    // event.button == 1 is the middle mouse click
+    if (event.button == 1) {
+      this.coordinatorService.getApplication(application, true);
+    }
+  }
+
 }
