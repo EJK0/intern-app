@@ -56,8 +56,4 @@ export class HeaderComponent implements OnInit {
     this.menuClicked.emit()
   }
 
-  open() {
-    this.commentService.open(true)
-  }
-
 }

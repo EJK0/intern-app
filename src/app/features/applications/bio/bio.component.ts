@@ -185,7 +185,7 @@ export class BioComponent implements OnInit, OnDestroy {
       this.studentId = this.route.snapshot.paramMap.get('studentId') as string;
       this.commentService.setAppId(this.route.snapshot.paramMap.get('studentId'))
     }
-    this.bioCommentsSub = this.commentService.commentsChanged$.subscribe((commentThreads) => {
+    this.bioCommentsSub = this.commentService.commentsChanged.subscribe((commentThreads) => {
       this.bioCommentThreads = commentThreads;
     })
     this.commentService.getCommentThreads();
@@ -679,6 +679,10 @@ export class BioComponent implements OnInit, OnDestroy {
       return this.route.snapshot.paramMap.get('studentEmail');
     }
     return;
+  }
+
+  addCommentThread() {
+    this.commentService.open(true);
   }
 }
 

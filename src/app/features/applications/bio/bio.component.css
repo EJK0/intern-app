@@ -90,6 +90,16 @@ table.mat-table {
   margin-left: auto;
 }
 
+.comment-thread-button {
+  margin-left: auto;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.comment-thread-button:hover {
+  opacity: 1;
+}
+
 td, th {
   white-space: normal;
   word-wrap: break-word;

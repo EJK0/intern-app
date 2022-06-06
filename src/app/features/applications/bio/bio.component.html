@@ -41,8 +41,12 @@
       <h4><b>Student name: </b>{{ this.getStudentName() }}</h4>
       <h4><b>Student email: </b><a [href]="'mailto:' + getStudentEmail()">{{ this.getStudentEmail() }}</a></h4>
     </div>
-    <button class="save-button" mat-icon-button type="submit" color="primary" matTooltipShowDelay="350" matTooltip="Save application" (click)="onSaveApplication()" [disabled]="isDirty$ | async">
-      <mat-icon>save</mat-icon></button>
+    <button *ngIf="!isCoordinator()" class="save-button" mat-icon-button type="submit" color="primary" matTooltipShowDelay="350" matTooltip="Save application" (click)="onSaveApplication()" [disabled]="isDirty$ | async">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button *ngIf="isCoordinator()" class="comment-thread-button" mat-icon-button color="primary" matTooltipShowDelay="75" matTooltip="Create new comment thread" (click)="addCommentThread()">
+      <mat-icon>add_comment</mat-icon>
+    </button>
   </div>
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="APPLICATION">
@@ -530,7 +534,7 @@
             </form>
           </mat-step>
 
-          <mat-step [stepControl]="documents" [errorMessage]="'Check that an essay and transcript have been uploaded.'" *ngIf="!studentId">
+          <mat-step [stepControl]="documents" [errorMessage]="'Check that an essay and transcript have been uploaded.'" *ngIf="!isCoordinator()">
             <form [formGroup]="documents">
               <ng-template matStepLabel>Upload Documents</ng-template>
               <div class="sub-step">
@@ -720,7 +724,7 @@
             </mat-card>
             <mat-action-row>
               <button mat-icon-button matTooltip="Reply to comment thread" matTooltipShowDelay="350" class="btn" color="primary" (click)="addComment(commentThread._id)"><mat-icon>reply</mat-icon></button>
-              <button *ngIf="this.isCoordinator()" mat-icon-button matTooltip="Delete comment thread" matTooltipShowDelay="350" class="btn" color="warn" (click)="openDialog(commentThread._id)"><mat-icon>delete</mat-icon></button>
+              <button *ngIf="isCoordinator()" mat-icon-button matTooltip="Delete comment thread" matTooltipShowDelay="350" class="btn" color="warn" (click)="openDialog(commentThread._id)"><mat-icon>delete</mat-icon></button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
