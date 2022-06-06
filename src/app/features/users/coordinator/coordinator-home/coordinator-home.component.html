@@ -2,7 +2,9 @@
 <app-spinner-overlay *ngIf="announcementsLoading">
 </app-spinner-overlay>
 <mat-tab-group mat-stretch-tabs animationDuration="0"  color="warn">
-  <mat-tab label="APPLICATIONS">
+  <mat-tab label="STUDENT APPLICATIONS">
+    <br>
+    <h4>This table is a list of all student applications in your program. The filter works for emails, names, and statuses and is intended to help you find a specific application. Click the column names to sort the table by that column.</h4>
     <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
       <input matInput autocomplete="off" (keyup)="applyFilter($event)" placeholder="Ex. In Progress" #input>
@@ -68,12 +70,12 @@
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" pageSize="10" aria-label="Select page of users"></mat-paginator>
     </div>
   </mat-tab>
-  <mat-tab label="ANNOUNCEMENTS">
+  <mat-tab label="PROGRAM ANNOUNCEMENTS">
     <mat-accordion>
       <br>
       <h2>Program Information and Announcements</h2>
       <hr>
-      <h3>The info panel below contains the information and announcements that students subscribed to this program can see on their home pages. As a coordinator, you are able to edit the announcements, which the students will see the next time they navigate to their home page.</h3>
+      <h3>The info panel below contains the information and announcements that students subscribed to this program will see on their home pages. As a coordinator, you are able to edit the announcements, which the students will see the next time they navigate to their home page.</h3>
       <mat-card class="announcements-panel"  *ngIf="!this.editAnnouncements">
         <app-announcements></app-announcements>
         <mat-divider inset></mat-divider>
