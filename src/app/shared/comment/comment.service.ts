@@ -4,9 +4,9 @@ import {HttpClient} from "@angular/common/http";
 import {Overlay, OverlayRef,} from "@angular/cdk/overlay";
 import {ComponentPortal} from "@angular/cdk/portal";
 import {CommentComponent} from "./comment.component";
-import {ReplaySubject} from "rxjs";
+import {BehaviorSubject, ReplaySubject, Subject} from "rxjs";
 import {CommentThread} from "./comment-thread.model";
-import {map, switchMap} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {ProfileService} from "../../features/users/profile/profile.service";
 import {Profile} from "../../features/users/profile/profile-model";
 
@@ -18,7 +18,8 @@ export const DATA_TOKEN = new InjectionToken('commentThreadData');
 export class CommentService {
   overlayRef!: OverlayRef | null;
   private commentThreads!: CommentThread[];
-  private commentsChanged = new ReplaySubject<CommentThread[]>();
+  private commentSubmitted$ = new Subject<boolean>();
+  private commentsChanged$ = new ReplaySubject<CommentThread[]>();
   private appId: string = 'student';
 
   constructor(private overlay: Overlay,
@@ -50,6 +51,7 @@ export class CommentService {
       subject: subject,
       body: body,
     }
+    this.commentSubmitted.next(true);
 
     this.httpClient
       .post<{message: string, commentThread: CommentThread}>( environment.apiUrl + 'comments', newCommentThread)
@@ -66,7 +68,7 @@ export class CommentService {
         }
       console.log("New comment thread...", newCommentThread);
       this.commentThreads.push(newCommentThread);
-      this.commentsChanged.next(this.commentThreads);
+      this.commentsChanged$.next(this.commentThreads);
       this.close();
     })
 
@@ -78,7 +80,7 @@ export class CommentService {
         ...res.commentThreads
       ] })).subscribe((commentThreads) => {
       this.commentThreads = commentThreads;
-      this.commentsChanged.next(commentThreads)
+      this.commentsChanged$.next(commentThreads)
     })
   }
 
@@ -86,7 +88,7 @@ export class CommentService {
     this.httpClient.delete<{message: string}>(environment.apiUrl + 'comments/' + threadId).subscribe((res) => {
       console.log(res.message);
       this.commentThreads = this.commentThreads.filter(el => el._id != threadId);
-      this.commentsChanged.next(this.commentThreads)
+      this.commentsChanged$.next(this.commentThreads)
     })
   }
 
@@ -95,6 +97,8 @@ export class CommentService {
       threadId: threadId,
       body: body,
     }
+
+    this.commentSubmitted.next(true);
 
     this.httpClient.post<{message: string, comment: {
         comment: string,
@@ -109,7 +113,7 @@ export class CommentService {
         profile: this.profileService.userProfile,
       });
       console.log('logging comment threads', this.commentThreads)
-      this.commentsChanged.next(this.commentThreads);
+      this.commentsChanged$.next(this.commentThreads);
       this.close();
     })
 
@@ -121,7 +125,11 @@ export class CommentService {
     }
   }
 
-  get commentsChanged$() {
-    return this.commentsChanged;
+  get commentsChanged() {
+    return this.commentsChanged$;
+  }
+
+  get commentSubmitted() {
+    return this.commentSubmitted$;
   }
 }

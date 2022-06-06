@@ -1,5 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<app-spinner-overlay *ngIf="commentSubmitted">
+</app-spinner-overlay>
 <div class="comment-panel">
   <mat-card class="mat-elevation-z3">
 
@@ -34,7 +35,7 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-raised-button (click)="onSubmit()">
+      <button mat-raised-button (click)="onSubmit()" [disabled]="commentSubmitted">
         Submit
       </button>
       <button mat-raised-button (click)="onCancel()">

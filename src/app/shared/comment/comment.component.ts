@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AsyncSubject, Subject} from "rxjs";
+import {AsyncSubject, BehaviorSubject, Subject, Subscription} from "rxjs";
 import {CommentService, DATA_TOKEN} from "./comment.service";
 
 @Component({
@@ -8,13 +8,15 @@ import {CommentService, DATA_TOKEN} from "./comment.service";
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit, OnDestroy {
   public commentForm: FormGroup = new FormGroup({
     subject: new FormControl("", Validators.required),
     body: new FormControl("", Validators.required)
   });
   private editorSubject: Subject<any> = new AsyncSubject();
 
+  commentSubmitted: boolean = false;
+  commentSubmitted$?: Subscription;
   isCommentThread: boolean = true;
 
   constructor(private commentService: CommentService,
@@ -22,6 +24,15 @@ export class CommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.isCommentThread = this.data.isCommentThread;
+    this.commentSubmitted$ = this.commentService.commentSubmitted.subscribe(val => {
+      if (val) {
+        this.commentSubmitted = val;
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.commentSubmitted$?.unsubscribe();
   }
 
   onSubmit() {
@@ -44,5 +55,7 @@ export class CommentComponent implements OnInit {
     this.editorSubject.next(e.editor);
     this.editorSubject.complete();
   }
+
+
 
 }
