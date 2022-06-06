@@ -7,8 +7,8 @@ import {CommentComponent} from "./comment.component";
 import {ReplaySubject} from "rxjs";
 import {CommentThread} from "./comment-thread.model";
 import {map, switchMap} from "rxjs/operators";
-import {ProfileService} from "../../user/profile/profile.service";
-import {Profile} from "../../user/profile/profile-model";
+import {ProfileService} from "../../features/users/profile/profile.service";
+import {Profile} from "../../features/users/profile/profile-model";
 
 export const DATA_TOKEN = new InjectionToken('commentThreadData');
 

@@ -1,4 +1,4 @@
-import {Profile} from "../../user/profile/profile-model";
+import {Profile} from "../../features/users/profile/profile-model";
 
 export interface CommentThread {
   _id: string;

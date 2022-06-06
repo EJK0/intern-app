@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "./auth/auth.service";
-import {StudentService} from "./student/student.service";
-import {UserService} from "./user/user.service";
-import {ProfileService} from "./user/profile/profile.service";
+import {AuthService} from "./core/auth/auth.service";
+import {StudentService} from "./features/users/student/student.service";
+import {UserService} from "./features/users/user.service";
+import {ProfileService} from "./features/users/profile/profile.service";
 import {AppProgressType} from "./shared/models/AppProgressType";
 
 
