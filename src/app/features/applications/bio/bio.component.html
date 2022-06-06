@@ -530,7 +530,7 @@
             </form>
           </mat-step>
 
-          <mat-step [stepControl]="documents" [errorMessage]="'Check that an essay and transcript have been uploaded.'">
+          <mat-step [stepControl]="documents" [errorMessage]="'Check that an essay and transcript have been uploaded.'" *ngIf="!studentId">
             <form [formGroup]="documents">
               <ng-template matStepLabel>Upload Documents</ng-template>
               <div class="sub-step">

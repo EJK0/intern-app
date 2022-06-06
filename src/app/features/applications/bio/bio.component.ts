@@ -45,7 +45,7 @@ export function dirtyCheck<U>(source: Observable<U>) {
 })
 export class BioComponent implements OnInit, OnDestroy {
   progressType = AppProgressType;
-  private studentId?: string;
+  studentId?: string;
   /*
   * This is for the instructions form */
   instructions: FormGroup = new FormGroup({
