@@ -15,9 +15,9 @@ export interface Task {
   subtasks?: Task[];
 }
 @Component({
-  selector: 'app-student-application',
-  templateUrl: './student-application.component.html',
-  styleUrls: ['./student-application.component.css'],
+  selector: 'app-student-dash',
+  templateUrl: './student-dash.component.html',
+  styleUrls: ['./student-dash.component.css'],
   animations: [
     trigger('widthGrow', [
       transition(':enter', [   // :enter is alias to 'void => *'
@@ -27,7 +27,7 @@ export interface Task {
     ])
   ]
 })
-export class StudentApplicationComponent implements OnInit, OnDestroy {
+export class StudentDashComponent implements OnInit, OnDestroy {
   announcementsSub!: Subscription;
 
   // TODO rename 'task' to something like appSteps

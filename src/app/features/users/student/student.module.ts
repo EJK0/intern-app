@@ -3,7 +3,7 @@ import {AngularMaterialModule} from "../../../angular-material.module";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import { StudentHomeComponent } from "./student-home/student-home.component";
-import { StudentApplicationComponent } from './student-home/student-application/student-application.component';
+import { StudentDashComponent } from './student-home/student-dash/student-dash.component';
 import {StudentRoutingModule} from "./student-routing.module";
 import {MatSelectModule} from "@angular/material/select";
 import {StudentApplyComponent} from "./student-apply/student-apply.component";
@@ -19,11 +19,11 @@ import {ProfileModule} from "../profile/profile.module";
 @NgModule({
   declarations: [
     StudentHomeComponent,
-    StudentApplicationComponent,
+    StudentDashComponent,
     StudentApplyComponent
   ],
   exports: [
-    StudentApplicationComponent
+    StudentDashComponent
   ],
   imports: [
     AngularMaterialModule,

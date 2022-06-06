@@ -18,7 +18,6 @@ export class StudentHomeComponent implements OnInit, OnDestroy {
     // console.log('logging app status in student home: ' + this.appStatus)
     this.applicationStatusListener = this.studentService.appStatusSub.subscribe((appStatus) => {
       this.appStatus = appStatus;
-      console.log('logging app status in student home subscribe: ' + this.appStatus)
     });
   }
 
