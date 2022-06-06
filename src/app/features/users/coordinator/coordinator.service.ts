@@ -16,9 +16,9 @@ export class CoordinatorService {
     return this.httpClient.get<{studentApplications: ApplicationData[]}>(environment.apiUrl + 'coordinator/applications')
   }
 
-  getApplication(application: ApplicationData, middleMouseClicked?: boolean) {
+  getApplication(application: ApplicationData, newTab?: boolean) {
     // TODO will need to change these if IT is added
-    if (middleMouseClicked) {
+    if (newTab) {
       const url = this.router.serializeUrl(this.router.createUrlTree(['/bio', {
         studentId: application._id,
         isCoordinator: true,
