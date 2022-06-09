@@ -58,9 +58,9 @@ app.use('/api/announcements', announcementsRoutes);
 
 // Angular server
 const distDir = path.join(__dirname, '../dist');
-app.use(express.static(path.join(distDir + '/mean-playground')));
+app.use(express.static(path.join(distDir + '/mean-internapp')));
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(distDir + '/mean-playground/index.html'));
+  res.sendFile(path.resolve(distDir + '/mean-internapp/index.html'));
 });
 
 module.exports = app;
