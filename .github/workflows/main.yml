@@ -14,3 +14,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_AUTH_KEY}}
           heroku_app_name: "my-internapp"
           heroku_email: "ephraimkim1@gmail.com"
+          branch: main
