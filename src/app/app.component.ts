@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   progressType = AppProgressType;
   isAuthenticated!: boolean;
   role!: string;
-  color = 'default';
 
   constructor(private authService: AuthService,
               private studentService: StudentService,
@@ -42,11 +41,6 @@ export class AppComponent implements OnInit {
       }
     });
 
-  }
-
-  changeColor() {
-    this.color = this.color === 'default' ? 'alternative' : 'default';
-    console.log(this.color)
   }
 
   get userName() {

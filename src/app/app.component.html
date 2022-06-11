@@ -1,5 +1,5 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav [ngClass]="color === 'default' ? 'default mat-elevation-z8' : 'alternative mat-elevation-z8'" #sidenav (click)="sidenav.toggle()">
+  <mat-sidenav class="mat-elevation-z8" #sidenav (click)="sidenav.toggle()">
     <a routerLink="/profile" class="sidenav-icon">
         <app-profile-icon iconClass="sidenav-icon" [userInitials]="userName | async"></app-profile-icon>
     </a>
@@ -38,10 +38,6 @@
     <button mat-button class="menu-button" routerLink="/about">
       <mat-icon>info</mat-icon>
       <span>About</span>
-    </button>
-    <button mat-button class="menu-button" (click)="changeColor()">
-      <mat-icon>color_lens</mat-icon>
-      <span>Switch colors</span>
     </button>
   </mat-sidenav>
 
