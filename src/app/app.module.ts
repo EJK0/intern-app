@@ -16,7 +16,7 @@ import {PostsModule} from "./features/posts/posts.module";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { ProfileComponent } from './features/users/profile/profile.component';
 import { AboutComponent } from './features/about/about.component';
-import { HelpComponent } from './features/help/help.component';
+import { SupportComponent } from './features/support/support.component';
 import { HomeComponent } from './features/home/home.component';
 import {ProfileModule} from "./features/users/profile/profile.module";
 import {MatTooltipModule} from "@angular/material/tooltip";
@@ -30,7 +30,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ItecComponent,
     ProfileComponent,
     AboutComponent,
-    HelpComponent,
+    SupportComponent,
     HomeComponent,
   ],
     imports: [

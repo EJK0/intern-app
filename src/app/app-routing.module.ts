@@ -7,7 +7,7 @@ import {ItecComponent} from "./features/applications/itec/itec.component";
 import {BioComponent} from "./features/applications/bio/bio.component";
 import {ProfileComponent} from "./features/users/profile/profile.component";
 import {AboutComponent} from "./features/about/about.component";
-import {HelpComponent} from "./features/help/help.component";
+import {SupportComponent} from "./features/support/support.component";
 import {HomeComponent} from "./features/home/home.component";
 import {HomeGuard} from "./features/home/home.guard";
 
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'itec', canActivate: [AuthGuard], component: ItecComponent},
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
   { path: 'about', canActivate: [AuthGuard], component: AboutComponent},
-  { path: 'help', canActivate: [AuthGuard], component: HelpComponent},
+  { path: 'support', canActivate: [AuthGuard], component: SupportComponent},
   { path: 'posts', canActivate: [AuthGuard], component: PostListComponent},
   { path: 'posts/create', canActivate: [AuthGuard], component: PostCreateComponent },
   { path: 'posts/edit/:postId', canActivate: [AuthGuard], component: PostCreateComponent },
