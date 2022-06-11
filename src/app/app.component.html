@@ -1,5 +1,5 @@
 <mat-sidenav-container fullscreen>
-  <mat-sidenav class="mat-elevation-z8" #sidenav (click)="sidenav.toggle()">
+  <mat-sidenav [ngClass]="'default mat-elevation-z8'" #sidenav (click)="sidenav.toggle()">
     <a routerLink="/profile" class="sidenav-icon">
         <app-profile-icon iconClass="sidenav-icon" [userInitials]="userName | async"></app-profile-icon>
     </a>
