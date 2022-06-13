@@ -1,4 +1,4 @@
-# [InternApp 2.0](https://https://my-internapp.herokuapp.com/auth/login) [![Build Status](https://app.travis-ci.com/onethoughtman/mean-internapp.svg?branch=main)](https://app.travis-ci.com/onethoughtman/mean-internapp) 
+# [InternApp 2.0](https://https://my-internapp.herokuapp.com/auth/login) [![Travis CI](https://app.travis-ci.com/onethoughtman/mean-internapp.svg?branch=main)](https://app.travis-ci.com/onethoughtman/mean-internapp) ![GitHub Deploy](https://github.com/onethoughtman/mean-internapp/actions/workflows/main.yml/badge.svg)
 
 (the link will take you to the live site)
 
