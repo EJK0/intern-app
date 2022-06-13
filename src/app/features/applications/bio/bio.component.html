@@ -710,7 +710,8 @@
             </mat-expansion-panel-header>
             <mat-card *ngFor="let comment of commentThread.comments" [ngClass]="{'comment-card-student': comment.profile.role === 'Student', 'comment-card-coordinator': comment.profile.role === 'Coordinator'}">
               <mat-card-header>
-                <div mat-card-avatar [ngClass]="{'comment-header-image-student': comment.profile.role === 'Student', 'comment-header-image-coordinator': comment.profile.role === 'Coordinator'}"></div>
+                <app-profile-icon mat-card-avatar iconClass="personal-icon" [userInitials]="comment.profile.name">
+                </app-profile-icon>
                 <mat-card-title>
                   {{ comment.commentAuthor }}
                 </mat-card-title>

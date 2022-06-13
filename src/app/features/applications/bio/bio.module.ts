@@ -17,6 +17,7 @@ import {EditorModule} from "@tinymce/tinymce-angular";
 import {SharedModule} from "../../../shared/shared.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { InternshipInfoDirective } from './internship-info.directive';
+import {ProfileModule} from "../../users/profile/profile.module";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { InternshipInfoDirective } from './internship-info.directive';
         MatBadgeModule,
         SharedModule,
         MatCheckboxModule,
+        ProfileModule,
     ],
 })
 export class BioModule {}
