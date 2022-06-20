@@ -7,7 +7,7 @@ import {MatStep} from "@angular/material/stepper";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {StudentService} from "../../users/student/student.service";
 import {AsyncSubject, BehaviorSubject, combineLatest, Observable, Subject, Subscription} from "rxjs";
-import {concatMap, debounceTime, map, shareReplay, startWith, tap} from "rxjs/operators";
+import {debounceTime, map, shareReplay, startWith, tap} from "rxjs/operators";
 import * as equal from "fast-deep-equal"
 import {ActivatedRoute} from "@angular/router";
 import {CommentService} from "../../../shared/comment/comment.service";
