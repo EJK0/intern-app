@@ -102,4 +102,8 @@ export class AuthService {
     }
     return '';
   }
+
+  changePassword(currentPassword: string, newPassword: string) {
+    return this.httpClient.put<{message: string}>(environment.apiUrl + 'users/change-password', {currentPassword: currentPassword, newPassword: newPassword})
+  }
 }

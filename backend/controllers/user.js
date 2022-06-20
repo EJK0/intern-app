@@ -83,3 +83,31 @@ module.exports.getUserInfo = (req, res) => {
         });
       });
 };
+
+module.exports.changePassword = (req, res) => {
+  User.findById(req.userData.userId).then((user) => {
+    if (user) {
+      const passwordMatches = bcrypt.compare(req.body.currentPassword, user.password);
+      if (passwordMatches) {
+        bcrypt.hash(req.body.newPassword, 10).then(
+            (hash) => {
+              user.password = hash;
+              user.save().then((onFulfilled) => {
+                res.status(200).json({
+                  message: 'Password successfully changed!',
+                });
+              }).catch((err) => {
+                res.status(500).json({
+                  message: 'Server failed to change password.',
+                });
+              });
+            },
+        );
+      } else {
+        res.status(422).json({
+          message: 'Incorrect password. Try again.',
+        });
+      }
+    }
+  });
+};
