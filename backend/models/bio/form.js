@@ -22,6 +22,7 @@ const emergencyContactInfoSchema = mongoose.Schema({
   contactZip: {type: String},
   contactPhone: {type: String},
   contactEmail: {type: String},
+  contactRelationshipDetails: {type: String},
   completed: {type: Boolean},
 }, {_id: false});
 

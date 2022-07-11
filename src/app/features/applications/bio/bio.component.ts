@@ -124,6 +124,7 @@ export class BioComponent implements OnInit, OnDestroy {
         contactZip: ['', Validators.required],
         contactPhone: ['', Validators.required],
         contactEmail: ['', Validators.required],
+        contactRelationshipDetails: ['', Validators.required],
       }),
       this.mentorInfo = this._formBuilder.group({
         mentorFirstName: ['', Validators.required],
