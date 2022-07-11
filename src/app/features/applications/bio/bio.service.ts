@@ -12,12 +12,11 @@ export class BioService {
   year = new Date().getFullYear();
   years: [{label: string, value: string}] = [{label: String(new Date().getFullYear()), value: String(new Date().getFullYear())}]
   bioAppSites = [
-    'Greening Youth Foundation',
     'Good Samaritan Health Center of Gwinnett',
-    'Yerkes Regional Primate Research Center',
+    "Truth\'s Community Clinic",
     'Covenant Health Pharmacy',
-    'Gwinnett County (Water Resources, Environmental Health and Police Departments)',
-    'Consultorio Medico Hispano',
+    'Emory National Primate Research Center',
+    'Gwinnett County (Water Resources, Environmental Health Services)',
   ];
   bioAppDocs: {position: number, filetype: string, filename: string, date_uploaded: string}[] = []
   private docs = new BehaviorSubject<Array<BioDoc>>([]);
