@@ -27,6 +27,76 @@ export class BioService {
     this.makeYears();
   }
 
+  initBioApp() {
+    this.saveApplication({
+      documents: {
+        essay: [],
+        transcript: [],
+        otherDoc: [],
+        completed: false
+      },
+      educationalObjectives: {completed: false, firstObjective: "", secondObjective: "", thirdObjective: ""},
+      emergencyContactInfo: {
+        completed: false,
+        contactAddress: "",
+        contactCity: "",
+        contactEmail: "",
+        contactFirstName: "",
+        contactLastName: "",
+        contactPhone: "",
+        contactState: "",
+        contactZip: "",
+        contactRelationshipDetails: ""
+      },
+      internshipInfo: {
+        committeeSites: "",
+        completed: false,
+        managerEmail: "",
+        managerFirstName: "",
+        managerLastName: "",
+        managerTitle: "",
+        preceptorEmail: "",
+        preceptorFirstName: "",
+        preceptorLastName: "",
+        preceptorManagerStatus: "",
+        preceptorPhone: "",
+        preceptorTitle: "",
+        siteAddress: "",
+        siteCity: "",
+        siteName: "",
+        sitePhone: "",
+        siteSpecialty: "",
+        siteState: "",
+        siteZip: "",
+        studentAvgWorkingHours: "",
+        studentEmployedHere: "",
+        studentInternshipVsWork: "",
+        studentPayStatus: "",
+        studentPersonalConnection: "",
+        studentPosition: ""
+      },
+      mentorInfo: {
+        completed: false,
+        mentorEmail: "",
+        mentorFirstName: "",
+        mentorLastName: "",
+      },
+      signature: {completed: false, printedSignature: ""},
+      studentAcademicInfo: {
+        completed: false,
+        concentration: "",
+        desiredInternshipSemester: "",
+        desiredInternshipYear: "",
+        expectedGradSemester: "",
+        expectedGradYear: "",
+        hoursCompleted: "",
+        intendedProfession: "",
+        overallGPA: "",
+        programGPA: ""
+      }
+    })
+  }
+
   makeYears() {
     for (let i = 1; i < 4; i++) {
       this.years.push({

@@ -21,83 +21,16 @@ export class StudentApplyComponent {
               private bioService: BioService) { }
 
   onSubmit() {
-    if (this.program.toLowerCase() === 'bio') {
+    if (this.program.toLowerCase() === 'bio')
+    {
       this.studentService.setAppType('bio');
       this.studentService.setAppStatus(this.progressType.NOT_STARTED);
       this.studentService.setAppProgress('0.0');
-      this.bioService.saveApplication(
-        {
-          documents: {
-            essay: [],
-            transcript: [],
-            otherDoc: [],
-            completed: false
-          },
-          educationalObjectives: {completed: false, firstObjective: "", secondObjective: "", thirdObjective: ""},
-          emergencyContactInfo: {
-            completed: false,
-            contactAddress: "",
-            contactCity: "",
-            contactEmail: "",
-            contactFirstName: "",
-            contactLastName: "",
-            contactPhone: "",
-            contactState: "",
-            contactZip: ""
-          },
-          internshipInfo: {
-            committeeSites: "",
-            completed: false,
-            managerEmail: "",
-            managerFirstName: "",
-            managerLastName: "",
-            managerTitle: "",
-            preceptorEmail: "",
-            preceptorFirstName: "",
-            preceptorLastName: "",
-            preceptorManagerStatus: "",
-            preceptorPhone: "",
-            preceptorTitle: "",
-            siteAddress: "",
-            siteCity: "",
-            siteName: "",
-            sitePhone: "",
-            siteSpecialty: "",
-            siteState: "",
-            siteZip: "",
-            studentAvgWorkingHours: "",
-            studentEmployedHere: "",
-            studentInternshipVsWork: "",
-            studentPayStatus: "",
-            studentPersonalConnection: "",
-            studentPosition: ""
-          },
-          mentorInfo: {
-            completed: false,
-            mentorEmail: "",
-            mentorFirstName: "",
-            mentorLastName: "",
-            mentorOffice: "",
-            mentorPhone: ""
-          },
-          signature: {completed: false, printedSignature: ""},
-          studentAcademicInfo: {
-            completed: false,
-            concentration: "",
-            desiredInternshipSemester: "",
-            desiredInternshipYear: "",
-            expectedGradSemester: "",
-            expectedGradYear: "",
-            hoursCompleted: "",
-            intendedProfession: "",
-            overallGPA: "",
-            programGPA: ""
-          }
-
-        }
-      )
+      this.bioService.initBioApp();
       this.router.navigate(['/bio'])
-    } else if (this.program.toLowerCase() === 'itec') {
+    }
+    else if (this.program.toLowerCase() === 'itec')
+    {
       this.studentService.setAppType('itec');
       this.router.navigate(['/itec'])
     }
