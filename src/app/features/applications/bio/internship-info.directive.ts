@@ -39,10 +39,10 @@ export const employedHereValidator: ValidatorFn = (control: AbstractControl): Va
   } else {
     const isEmploymentInfoComplete =
       (control.get('studentPosition')?.value !== ''
-      && control.get('studentPosition')?.value !== ''
-      && control.get('studentPosition')?.value !== ''
-      && control.get('studentPosition')?.value !== ''
-      && control.get('studentPosition')?.value !== '');
+      && control.get('studentPayStatus')?.value !== ''
+      && control.get('studentAvgWorkingHours')?.value !== ''
+      && control.get('studentInternshipVsWork')?.value !== ''
+      && control.get('studentPersonalConnection')?.value !== '');
     return isEmploymentInfoComplete ? null : {employmentIncomplete: true};
   }
 };
