@@ -29,8 +29,6 @@ const emergencyContactInfoSchema = mongoose.Schema({
 const mentorInfoSchema = mongoose.Schema({
   mentorFirstName: {type: String},
   mentorLastName: {type: String},
-  mentorOffice: {type: String},
-  mentorPhone: {type: String},
   mentorEmail: {type: String},
   completed: {type: Boolean},
 }, {_id: false});

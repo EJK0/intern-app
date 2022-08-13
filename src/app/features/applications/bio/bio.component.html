@@ -245,28 +245,13 @@
                 </mat-form-field>
               </div>
               <div class="sub-step">
-                <h4>Mentor's office location</h4>
+                <h4>Mentor's email</h4>
               </div>
-              <mat-form-field appearance="fill" [floatLabel]="'always'">
-                <mat-label>Office</mat-label>
-                <input type="text" matInput formControlName="mentorOffice" placeholder="Ex. H-3241"
+              <mat-form-field appearance="fill">
+                <mat-label>Email address</mat-label>
+                <input type="email" matInput formControlName="mentorEmail" placeholder="Ex. person@example.com"
                        required>
               </mat-form-field>
-              <div class="sub-step">
-                <h4>Mentor's phone number and email</h4>
-              </div>
-              <div class="form-container">
-                <mat-form-field appearance="fill">
-                  <mat-label>Phone number</mat-label>
-                  <input type="tel" matInput formControlName="mentorPhone" placeholder="Ex. 123-456-7890"
-                         required>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Email address</mat-label>
-                  <input type="email" matInput formControlName="mentorEmail" placeholder="Ex. person@example.com"
-                         required>
-                </mat-form-field>
-              </div>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>

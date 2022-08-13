@@ -20,13 +20,12 @@ export interface BioApplication {
     contactZip: string,
     contactPhone: string,
     contactEmail: string,
+    contactRelationshipDetails: string,
     completed: boolean,
   };
   mentorInfo: {
     mentorFirstName: string,
     mentorLastName: string,
-    mentorOffice: string,
-    mentorPhone: string,
     mentorEmail: string,
     completed: boolean,
   };
